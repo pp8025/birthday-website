@@ -1,483 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Birthday Adventure - The Sweetest Surprise Awaits</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.5.1/confetti.browser.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 16th Birthday!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #a2d2ff 0%, #ffc8dd 50%, #fff3b0 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe6f2);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        .page {
-            display: none;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            animation: fadeIn 0.8s ease-in-out;
-        }
+    .page {
+      display: none;
+      min-height: 100vh;
+      position: relative;
+    }
 
-        .page.active {
-            display: flex;
-        }
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 2.5rem;
-            color: #4a154b;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
 
-        h2 {
-            font-family: 'Pacifico', cursive;
-            font-size: 2rem;
-            color: #4a154b;
-            margin-bottom: 1rem;
-        }
+    /* Page 1 Styles */
+    .page1 h1 {
+      font-size: 3.5em;
+      color: #cc3366;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      animation: bounce 2s infinite;
+    }
 
-        p {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
+    .birthday-image {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid #ff99cc;
+      margin-bottom: 30px;
+      object-fit: cover;
+      animation: pulse 3s infinite;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
 
-        .button {
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
-        }
+    .placeholder-image {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid #ff99cc;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #ffccff, #ff99cc);
+      color: #cc3366;
+      font-size: 3em;
+      animation: pulse 3s infinite;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
 
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
-        }
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: linear-gradient(45deg, #ffccff, #ff99ff);
+      color: #333;
+      border: 2px solid #cc66cc;
+      border-radius: 25px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
 
-        .gift-box {
-            width: 150px;
-            height: 150px;
-            margin: 2rem auto;
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
+    .button:hover {
+      background: linear-gradient(45deg, #ff99ff, #ff66ff);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
 
-        .gift-box:hover {
-            transform: scale(1.05);
-        }
+    /* Page 2 Styles */
+    .page2 h1 {
+      font-size: 2.8em;
+      color: #cc3366;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
 
-        .box-base {
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
-            border-radius: 15px;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    .page2 h3 {
+      font-size: 1.5em;
+      color: #ff4d4d;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
 
-        .box-lid {
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(45deg, #ff5252, #ff9800);
-            border-radius: 15px 15px 5px 5px;
-            position: absolute;
-            top: -15px;
-            transition: all 0.5s ease;
-        }
+    .heart-button {
+      background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
+      color: white;
+      border: none;
+      font-size: 2em;
+      padding: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      box-shadow: 0 8px 20px rgba(255, 77, 77, 0.4);
+    }
 
-        .box-ribbon {
-            width: 15px;
-            height: 120px;
-            background: #ffd700;
-            position: absolute;
-            left: 50%;
-            top: -15px;
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
+    .heart-button:hover {
+      transform: scale(1.1);
+    }
 
-        .box-bow {
-            width: 40px;
-            height: 20px;
-            background: #ffd700;
-            position: absolute;
-            left: 50%;
-            top: -25px;
-            transform: translateX(-50%);
-            border-radius: 20px;
-        }
+    /* Page 3 Styles */
+    .page3 {
+      position: relative;
+      overflow: hidden;
+    }
 
-        .box-bow::before {
-            content: '';
-            width: 15px;
-            height: 15px;
-            background: #ffeb3b;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-        }
+    .question {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      color: #cc3366;
+      text-align: center;
+      z-index: 10;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
 
-        .gift-box.opened .box-lid {
-            transform: translateY(-30px) rotateX(45deg);
-        }
+    .btn {
+      position: absolute;
+      padding: 12px 20px;
+      background: linear-gradient(45deg, #ffe6e6, #ffcccc);
+      border: 2px solid #ff9999;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      color: #cc3366;
+    }
 
-        .kinder-joy {
-            font-size: 4rem;
-            margin: 2rem 0;
-            animation: bounce 2s infinite;
-        }
+    .btn:hover {
+      background: linear-gradient(45deg, #ffcccc, #ffb3b3);
+      transform: scale(1.05);
+    }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+    .heart-btn {
+      background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
+      color: white;
+      font-size: 2.5em;
+      border: 3px solid #cc0000;
+      padding: 20px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      box-shadow: 0 10px 25px rgba(255, 77, 77, 0.5);
+    }
 
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    .heart-btn:hover {
+      animation: none;
+      transform: scale(1.1);
+    }
 
-        .heart {
-            position: absolute;
-            font-size: 1.5rem;
-            color: rgba(255, 182, 193, 0.7);
-            animation: floatUp 6s infinite linear;
-        }
+    /* Page 4 Styles */
+    .page4 {
+      padding: 0;
+      overflow: hidden;
+    }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-gap: 10px;
+      width: 100vw;
+      height: 100vh;
+      padding: 20px;
+    }
 
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: sparkle 2s infinite;
-        }
+    .grid-item {
+      background: linear-gradient(45deg, #ffccff, #ff99cc);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      color: #cc3366;
+      font-weight: bold;
+      min-height: 120px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
 
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
+    .grid-item:hover {
+      transform: scale(1.05);
+    }
 
-        .choice-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
+    .center-message {
+      grid-column: span 2;
+      grid-row: span 2;
+      font-size: 2.5em;
+      background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      animation: pulse 3s infinite;
+    }
 
-        .choice-button {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      color: #ff4d4d;
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+      z-index: 1000;
+    }
 
-        .choice-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
-        }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
 
-        .choice-button.selected {
-            background: linear-gradient(45deg, #2196F3, #03A9F4);
-        }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .page1 h1 { font-size: 2.5em; }
+      .page2 h1 { font-size: 2.2em; }
+      .question { font-size: 2em; top: 25%; }
+      .birthday-image, .placeholder-image { width: 200px; height: 200px; }
+      .center-message { font-size: 1.8em; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    }
 
-        .birthday-message {
-            font-size: 1.4rem;
-            color: #4a154b;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ff4d4d;
+      animation: confetti-fall 3s linear infinite;
+      z-index: 1000;
+    }
 
-        .signature {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.2rem;
-            color: #666;
-            margin-top: 2rem;
-            font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-            .card {
-                padding: 2rem;
-                margin: 1rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-    <div class="floating-hearts" id="floatingHearts"></div>
 
-    <!-- Page 1: Welcome -->
-    <div class="page active" id="page1">
-        <div class="card">
-            <h1>🎉 Hey Beautiful!</h1>
-            <p>Today's not just any day... A magical journey is waiting for you! ✨</p>
-            <p>Ready to start your special adventure?</p>
-            <button class="button" onclick="nextPage(2)">🚀 Start the Adventure</button>
-        </div>
+  <!-- Page 1: Welcome -->
+  <div class="page active" id="page1">
+    <h1>Heyyy 16!!!</h1>
+    <div class="placeholder-image">🎂</div>
+    <button class="button" onclick="nextPage()">Next!</button>
+  </div>
+
+  <!-- Page 2: Surprise -->
+  <div class="page" id="page2">
+    <h1>I have a surprise for youuuyyh!</h1>
+    <div class="placeholder-image">🎁</div>
+    <h3>check it down👇</h3>
+    <button class="heart-button" onclick="nextPage()">🖤</button>
+  </div>
+
+  <!-- Page 3: Kinderjoy Question -->
+  <div class="page" id="page3">
+    <div class="question">You wanna Kinderjoy?</div>
+    
+    <button class="btn heart-btn" id="movingHeart" onclick="handleHeartClick()" style="top: 55%; left: 50%; transform: translate(-50%, -50%);">
+      ❤️
+    </button>
+
+    <!-- Random NO buttons -->
+    <button class="btn no-btn" style="top: 10%; left: 10%;">NO</button>
+    <button class="btn no-btn" style="top: 20%; left: 70%;">NO</button>
+    <button class="btn no-btn" style="top: 80%; left: 20%;">NO</button>
+    <button class="btn no-btn" style="top: 30%; left: 30%;">NO</button>
+    <button class="btn no-btn" style="top: 70%; left: 75%;">NO</button>
+    <button class="btn no-btn" style="top: 40%; left: 85%;">NO</button>
+    <button class="btn no-btn" style="top: 60%; left: 40%;">NO</button>
+    <button class="btn no-btn" style="top: 15%; left: 50%;">NO</button>
+    <button class="btn no-btn" style="top: 85%; left: 60%;">NO</button>
+  </div>
+
+  <!-- Page 4: Birthday Celebration -->
+  <div class="page" id="page4">
+    <div class="grid" id="grid">
+      <!-- Grid items will be generated by JavaScript -->
     </div>
+  </div>
 
-    <!-- Page 2: Clue -->
-    <div class="page" id="page2">
-        <div class="card">
-            <h2>🕵️ Clue #1</h2>
-            <p>You've reached the first clue... and something is hiding behind that box!</p>
-            <div class="gift-box" id="giftBox" onclick="openGiftBox()">
-                <div class="box-base">
-                    <div class="box-lid" id="boxLid"></div>
-                    <div class="box-ribbon"></div>
-                    <div class="box-bow"></div>
-                </div>
-            </div>
-            <p>Click the gift box to unwrap your surprise!</p>
-        </div>
-    </div>
+  <script>
+    let currentPage = 1;
+    const totalPages = 4;
+    let heartsInterval;
+    let confettiInterval;
+    let heartMoveCount = 0;
+    let maxHeartMoves = 5;
 
-    <!-- Page 3: Sweet Reveal -->
-    <div class="page" id="page3">
-        <div class="card">
-            <h2>🎉 Ta-da!</h2>
-            <p>You just won...</p>
-            <div class="kinder-joy">🥚🍫</div>
-            <p><strong>A KINDER JOY!!</strong></p>
-            <p>Do you like Kinder Joy?</p>
-            <div class="choice-buttons">
-                <button class="choice-button" onclick="selectChoice(this, 'yes')">Yes! 😍</button>
-                <button class="choice-button" onclick="selectChoice(this, 'no')">Not really 😅</button>
-            </div>
-            <button class="button" onclick="nextPage(4)" style="margin-top: 2rem; display: none;" id="continueBtn">➡️ Continue to Final Surprise</button>
-        </div>
-    </div>
-
-    <!-- Page 4: Birthday Message -->
-    <div class="page" id="page4">
-        <div class="card">
-            <h1>🎂 Happy Birthday! 🎂</h1>
-            <div class="birthday-message">
-                You light up the world just by being you! 🌟
-            </div>
-            <p>Here's to laughter, joy, and sweet surprises! May your day be filled with all the happiness you bring to others.</p>
-            <p>Thank you for being such an amazing friend. You deserve all the wonderful things life has to offer!</p>
-            <button class="button" onclick="finalSurprise()">👑 Reveal Your Final Secret</button>
-            <div class="signature">
-                "Birthdays are for magic, and this one's made just for you..."
-                <br>- With love ❤️
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let currentPage = 1;
+    function nextPage() {
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage++;
+      if (currentPage <= totalPages) {
+        document.getElementById(`page${currentPage}`).classList.add('active');
         
-        function nextPage(pageNumber) {
-            // Hide current page
-            document.getElementById(`page${currentPage}`).classList.remove('active');
-            
-            // Show new page
-            setTimeout(() => {
-                document.getElementById(`page${pageNumber}`).classList.add('active');
-                currentPage = pageNumber;
-            }, 300);
+        if (currentPage === 4) {
+          initializeFinalPage();
         }
+      }
+    }
 
-        function openGiftBox() {
-            const giftBox = document.getElementById('giftBox');
-            const boxLid = document.getElementById('boxLid');
-            
-            giftBox.classList.add('opened');
-            
-            // Confetti effect
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff6b6b', '#ffa726', '#4CAF50', '#2196F3', '#9C27B0']
-            });
-            
-            // Move to next page after animation
-            setTimeout(() => {
-                nextPage(3);
-            }, 2000);
+    function handleHeartClick() {
+      const heart = document.getElementById('movingHeart');
+      
+      if (heartMoveCount < maxHeartMoves) {
+        // Move the heart to a random position
+        const randomTop = Math.random() * 70 + 15; // Between 15% and 85%
+        const randomLeft = Math.random() * 70 + 15; // Between 15% and 85%
+        
+        heart.style.transition = 'all 0.3s ease';
+        heart.style.top = randomTop + '%';
+        heart.style.left = randomLeft + '%';
+        
+        heartMoveCount++;
+        
+        // Add a little shake animation to tease
+        heart.style.animation = 'none';
+        setTimeout(() => {
+          heart.style.animation = 'pulse 2s infinite';
+        }, 300);
+        
+        // Change the emoji temporarily for fun
+        heart.innerHTML = '😜';
+        setTimeout(() => {
+          heart.innerHTML = '❤️';
+        }, 500);
+        
+      } else {
+        // After enough teasing, let her click it
+        heart.innerHTML = '😊';
+        heart.style.animation = 'bounce 0.5s ease';
+        setTimeout(() => {
+          nextPage();
+        }, 500);
+      }
+    }
+
+    function initializeFinalPage() {
+      createGrid();
+      startHeartAnimation();
+      startConfetti();
+    }
+
+    function createGrid() {
+      const grid = document.getElementById('grid');
+      const messages = [
+        '🎉', '🎂', '🎁', '🎈', '🌟', '💖', '🎊', '🥳',
+        '🎵', '🎪', '🎭', '🎨', '🎯', '🎲', '🎸', '🎺',
+        '🍰', '🍭', '🍬', '🧁', '🍩', '🍪', '🍫', '🍯',
+        '🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌿', '🍀',
+        '⭐', '✨', '💫', '🌙', '☀️', '🌈', '🦋', '🌺'
+      ];
+
+      for (let i = 0; i < 40; i++) {
+        const cell = document.createElement('div');
+        
+        if (i === 20) {
+          cell.classList.add('grid-item', 'center-message');
+          cell.innerHTML = 'Happy Birthday!! ❤️';
+        } else {
+          cell.classList.add('grid-item');
+          cell.innerHTML = messages[i % messages.length];
         }
+        
+        grid.appendChild(cell);
+      }
+    }
 
-        function selectChoice(button, choice) {
-            // Remove selected class from all buttons
-            document.querySelectorAll('.choice-button').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked button
-            button.classList.add('selected');
-            
-            // Show continue button
-            document.getElementById('continueBtn').style.display = 'inline-block';
-            
-            // Different responses based on choice
-            if (choice === 'yes') {
-                button.innerHTML = 'Yes! 😍 ✅';
-            } else {
-                button.innerHTML = 'Not really 😅 ✅';
-            }
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      heart.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(heart);
+      
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
         }
+      }, 6000);
+    }
 
-        function finalSurprise() {
-            // Epic confetti celebration
-            const duration = 3000;
-            const animationEnd = Date.now() + duration;
-            
-            const randomInRange = (min, max) => {
-                return Math.random() * (max - min) + min;
-            };
-            
-            const interval = setInterval(() => {
-                const timeLeft = animationEnd - Date.now();
-                
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    // You can add a link to photos, video, or another surprise here
-                    alert('🎉 The real surprise is having you as a friend! 🎉\n\nHope your birthday is as amazing as you are! 🎂❤️');
-                    return;
-                }
-                
-                confetti({
-                    particleCount: 50,
-                    startVelocity: 30,
-                    spread: 360,
-                    origin: {
-                        x: randomInRange(0.1, 0.3),
-                        y: Math.random() - 0.2
-                    }
-                });
-                
-                confetti({
-                    particleCount: 50,
-                    startVelocity: 30,
-                    spread: 360,
-                    origin: {
-                        x: randomInRange(0.7, 0.9),
-                        y: Math.random() - 0.2
-                    }
-                });
-            }, 250);
+    function startHeartAnimation() {
+      heartsInterval = setInterval(createHeart, 500);
+    }
+
+    function createConfetti() {
+      const colors = ['#ff4d4d', '#ff9999', '#ffcccc', '#ff66cc', '#cc66cc'];
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
         }
+      }, 3000);
+    }
 
-        // Create floating hearts
-        function createFloatingHearts() {
-            const heartsContainer = document.getElementById('floatingHearts');
-            
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '💖';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                
-                heartsContainer.appendChild(heart);
-                
-                // Remove heart after animation
-                setTimeout(() => {
-                    heart.remove();
-                }, 6000);
-            }, 3000);
-        }
+    function startConfetti() {
+      confettiInterval = setInterval(createConfetti, 200);
+    }
 
-        // Initialize floating hearts
-        createFloatingHearts();
-
-        // Add sparkles on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.9) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 2000);
-            }
+    // Add hover effects for NO buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      const noButtons = document.querySelectorAll('.no-btn');
+      noButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(0.8)';
+          this.innerHTML = '😈';
         });
-    </script>
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.innerHTML = 'NO';
+        });
+        button.addEventListener('click', function() {
+          this.style.animation = 'bounce 0.5s ease';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 500);
+        });
+      });
+    });
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (currentPage < totalPages) {
+          nextPage();
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
